@@ -60,6 +60,7 @@ form:hover {
   border: none;
   background: #0bff02;
   padding: 5px;
+  font-family: cursive;
 }
 
 #add-to-list-button:hover {
@@ -69,10 +70,141 @@ form:hover {
 
 #todo-ul {
   margin-left: 20px;
-  font-size: 25px;
+  width: 500px;
+  margin: 50px auto;
 }
 
-#todo-li{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-left: 10px;
+.todo-li {
+  font-family: cursive;
+  font-size: 19px;
+  padding: 15px;
+  list-style: none;
+  margin-top: 10px;
+  margin-left: 10px;
+  box-shadow: 2px 2px 2px 2px gray;
+  border-radius: 20px;
+  font-weight: lighter;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.li-buttons {
+  display: flex;
+  justify-content: end;
+  margin-left: auto;
+  gap: 10px;
+}
+
+.editli-button {
+  font-family: cursive;
+  background: #00ff55;
+  border: none;
+  padding: 5px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 6px gray;
+}
+
+.editli-button:hover {
+  box-shadow: 0px 0px 3px greenyellow;
+  background: #2c9c0a;
+  transition: 0.2s ease;
+}
+
+.editli-button i:hover {
+  color: white;
+}
+
+.deleteli-button {
+  font-family: cursive;
+  background: #fd0000;
+  border: none;
+  color: white;
+  padding: 7px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 6px gray;
+}
+
+.deleteli-button:hover {
+  box-shadow: 0px 0px 3px #aa0606;
+  transition: 0.2s ease;
+  background: #aa0606;
+}
+
+.deleteli-button i:hover {
+  color: red;
+}
+
+@media (max-width: 680px) {
+  form {
+    width: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    margin-top: 30px;
+    padding: 10px;
+    box-shadow: 0px 0px 3px gray;
+    border-radius: 20px;
+    border: none;
+    transition: 0.3s ease;
+  }
+
+  #todo-ul {
+    margin-left: 20px;
+    width: 400px;
+    margin: 50px auto;
+    transition: 0.3s ease;
+  }
+}
+
+@media (max-width: 444px) {
+  form {
+    width: 300px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    margin-top: 30px;
+    padding: 10px;
+    box-shadow: 0px 0px 3px gray;
+    border-radius: 20px;
+    border: none;
+    transition: 0.3s ease;
+  }
+
+  #todo-ul {
+    margin-left: 20px;
+    width: 300px;
+    margin: 50px auto;
+    transition: 0.3s ease;
+  }
+
+  .todo-head {
+    text-align: center;
+    font-family: cursive;
+    font-weight: lighter;
+    margin-top: 50px;
+  }
+
+  .editli-button {
+    font-family: cursive;
+    background: #00ff55;
+    border: none;
+    padding: 7px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 3px gray;
+    font-size: 10px;
+    transition: 0.3s ease;
+  }
+  .deleteli-button {
+    font-family: cursive;
+    background: #fd0000;
+    border: none;
+    color: white;
+    padding: 7px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 3px gray;
+    font-size: 10px;
+    transition: 0.3s ease;
+  }
 }

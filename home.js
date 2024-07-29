@@ -23,34 +23,47 @@ onAuthStateChanged(auth, (user) => {
 
 function renderTodo() {
   if (todo.value !== null && todo.value !== '') {
-    let todoObj = {
-      todo: `${todo.value}`
+    let todoSplit = todo.value.split('');
+    console.log("🚀 ~ todoSplit:", todoSplit)
+    if (todoSplit[0] === todoSplit[0].toUpperCase()) {
+
+      let todoObj = {
+        todo: `${todo.value}`
+      }
+      arr.push(todoObj);
+      ul.innerHTML = '';
+      
+      arr.reverse().map(item => {
+        ul.innerHTML += `<li class="todo-li">${item.todo}<div class="li-buttons"><button class="editli-button">Edit <i class="fa-solid fa-pen"></i></button><button class="deleteli-button">Delete <i class="fa-solid fa-trash"></i></button></div></li>`
+      })
+    } else {
+      alert(`First letter should be capital form`);
     }
-    arr.push(todoObj);
-    ul.innerHTML = '';
-    arr.map(item => {
-      ul.innerHTML += `<li id="todo-li">${item.todo}</li>`
-    })
   } else {
     alert(`Please enter todo`);
   }
 }
+
+
 
 form.addEventListener('submit', async (event) => {
 
   event.preventDefault();
   console.log(todo.value);
   renderTodo();
-  try {
-    if(todo.value !== '' && todo.value !== null){
 
-      const docRef = await addDoc(collection(db, "todos"), {
-        todo: `${todo.value}`
-      });
-      console.log("Document written with ID: ", docRef.id);
+  try {
+    if (todo.value !== '' && todo.value !== null) {
+      let todoSplit = todo.value.split('');
+      if (todoSplit[0] !== todoSplit[0].toLowerCase()) {
+        const docRef = await addDoc(collection(db, "todos"), {
+          todo: `${todo.value}`
+        });
+        todo.value = '';
+        console.log("Document written with ID: ", docRef.id);
+      }
     }
-    todo.value = '';
-  
+
   }
   catch (e) {
     console.error("Error adding document: ", e);
