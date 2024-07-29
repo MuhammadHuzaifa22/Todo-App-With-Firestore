@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  width: 40%;
+  margin: auto;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0px 0px 5px gray;
+  padding: 10px;
+  margin-top: 100px;
+}
+
+#form h1 {
+  text-align: center;
+}
+
+.form-inputs-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0px 0px 10px gray;
+}
+
+.form-inputs-section:hover {
+  box-shadow: 0px 0px 20px gray;
+  transition: 0.3s ease;
+}
+
+.form-inputs-section label {
+  font-size: 30px;
+}
+
+.form-inputs-section input {
+  height: 5vh;
+  border: none;
+  box-shadow: 0px 0px 5px black;
+  border-radius: 20px;
+  padding: 5px;
+  font-size: 25px;
+}
+
+.form-inputs-section input:hover {
+  box-shadow: 0px 0px 5px gray;
+  transition: 0.2s ease-in;
+}
+
+#form button {
+  font-size: 27px;
+  border-radius: 20px;
+  border: none;
+  background: #00ff15;
+  color: white;
+  padding: 5px;
+}
+
+#form button:hover {
+  box-shadow: 2px 2px 5px black;
+  transition: 0.3s ease;
+}
+
+.form-inputs-section p {
+  font-size: 25px;
+  text-align: center;
+}
+
+.form-inputs-section a:hover {
+  font-weight: bold;
+  transition: 0.2s ease;
+}
