@@ -7,7 +7,7 @@
 .todo-head {
   text-align: center;
   font-family: cursive;
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 form {
@@ -77,7 +77,7 @@ form:hover {
 .todo-li {
   font-family: cursive;
   font-size: 19px;
-  padding: 15px;
+  padding: 5px;
   list-style: none;
   margin-top: 10px;
   margin-left: 10px;
@@ -86,6 +86,11 @@ form:hover {
   font-weight: lighter;
   display: flex;
   flex-wrap: wrap;
+}
+
+.todo-li:hover {
+  background: whitesmoke;
+  transition: 0.1s ease;
 }
 
 .li-buttons {
@@ -207,4 +212,38 @@ form:hover {
     font-size: 10px;
     transition: 0.3s ease;
   }
+}
+
+/* ., Sign Out  */
+navbar navbar {
+  display: flex;
+  padding: 10px 20px;
+  align-items: center;
+}
+
+
+#sign-out-button {
+  margin-left: auto;
+  margin-right: 50px;
+  height: 50px;
+  border-radius: 100px;
+  border: none;
+  background: none;
+  border: 1px solid red;
+  box-shadow: 0px 0px 3px gray;
+}
+
+#sign-out-button:hover{
+  box-shadow: 0px 0px 5px gray;
+  transition: 0.1s ease;
+}
+
+#sign-out-button:active {
+  border: 3px solid greenyellow;
+}
+
+#sign-out-image {
+  height: 50px;
+  padding-bottom: 3px;
+  padding-right: 3px;
 }

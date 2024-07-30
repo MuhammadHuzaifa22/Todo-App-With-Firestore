@@ -31,6 +31,7 @@ googleButton.addEventListener('click', () => {
             const token = credential.accessToken;
             const user = result.user;
             console.log("🚀 ~ .then ~ user:", user);
+            localStorage.setItem('user-with-google',JSON.stringify(user));
             window.location = 'home.html';
         }).catch((error) => {
             const errorCode = error.code;

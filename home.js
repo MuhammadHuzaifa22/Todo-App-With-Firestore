@@ -7,6 +7,20 @@ const form = document.getElementById('todo-form');
 const todo = document.getElementById('todo');
 const ul = document.querySelector('ul');
 const arr = [];
+const userWithGoogle = JSON.parse(localStorage.getItem('user-with-google'));
+const signOutDetailAndbButton = document.querySelector('.sign-out-detail-and-button');
+const signOutButton = document.getElementById('sign-out-button');
+signOutDetailAndbButton.style.display = 'none';
+
+signOutButton.addEventListener('click',()=>{
+  if(signOutDetailAndbButton.style.display === 'none'){
+    signOutDetailAndbButton.style.display = 'block';
+  }else{
+    signOutDetailAndbButton.style.display = 'none';
+  }
+})
+
+console.log("🚀 ~ userWithGoogle:", userWithGoogle);
 
 // ., On Auth State Change Function
 onAuthStateChanged(auth, (user) => {
@@ -31,9 +45,9 @@ function renderTodo() {
         todo: `${todo.value}`
       }
       arr.push(todoObj);
+
       ul.innerHTML = '';
-      
-      arr.reverse().map(item => {
+      arr.slice().reverse().map(item => {
         ul.innerHTML += `<li class="todo-li">${item.todo}<div class="li-buttons"><button class="editli-button">Edit <i class="fa-solid fa-pen"></i></button><button class="deleteli-button">Delete <i class="fa-solid fa-trash"></i></button></div></li>`
       })
     } else {
@@ -63,9 +77,13 @@ form.addEventListener('submit', async (event) => {
         console.log("Document written with ID: ", docRef.id);
       }
     }
-
+    
   }
   catch (e) {
     console.error("Error adding document: ", e);
   }
 })
+
+
+
+// ., Sign Out 
