@@ -1,6 +1,6 @@
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
 import { auth, db } from "./config.js";
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+import { collection, addDoc, getDocs, } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
 
 
 const form = document.getElementById('todo-form');
@@ -39,15 +39,14 @@ onAuthStateChanged(auth, (user) => {
 
 
 function renderTodo() {
-  if (todo.value !== null && todo.value !== '') {
+
     let todoSplit = todo.value.split('');
     console.log("🚀 ~ todoSplit:", todoSplit)
-    if(todoSplit.includes('<')  || todoSplit.includes('>') || todoSplit.includes('@') || todoSplit.includes('!') || todoSplit.includes('#') || todoSplit.includes('$') || todoSplit.includes('%') || todoSplit.includes('^') || todoSplit.includes('&') || todoSplit.includes('*') || todoSplit.includes('(') || todoSplit.includes(')') || todoSplit.includes('.') || todoSplit.includes('/') || todoSplit.includes('?') || todoSplit.includes('"') || todoSplit.includes(';') || todoSplit.includes(':') || todoSplit.includes('{') || todoSplit.includes('}') || todoSplit.includes('|')|| todoSplit.includes('=') || todoSplit.includes('`')){
+    if (todoSplit.includes('<') || todoSplit.includes('>') || todoSplit.includes('@') || todoSplit.includes('!') || todoSplit.includes('#') || todoSplit.includes('$') || todoSplit.includes('%') || todoSplit.includes('^') || todoSplit.includes('&') || todoSplit.includes('*') || todoSplit.includes('(') || todoSplit.includes(')') || todoSplit.includes('.') || todoSplit.includes('/') || todoSplit.includes('?') || todoSplit.includes('"') || todoSplit.includes(';') || todoSplit.includes(':') || todoSplit.includes('{') || todoSplit.includes('}') || todoSplit.includes('|') || todoSplit.includes('=') || todoSplit.includes('`')) {
       alert('Input field should not contain *symbols* \n  Like < >  @ ! # $ % ^ & * ( ) - + . ` ?  / = " : ; { }');
-    }else{
+    } else {
 
-      if (todoSplit[0] === todoSplit[0].toUpperCase() ) {
-        
+
       let todoObj = {
         todo: `${todo.value}`
       }
@@ -59,30 +58,36 @@ function renderTodo() {
         editLiBtn.addEventListener('click', () => {
           alert(`This function is coming soon`);
         })
-        
         const deleteLiBtn = document.querySelector('.deleteli-button');
         deleteLiBtn.addEventListener('click', () => {
           alert(`This function is coming soon`);
         })
       })
-      
-    } else {
-      alert(`First letter should be capital form`);
     }
   }
-  } else {
-    alert(`Please enter todo`);
-  }
+
+async function getData() {
+  const querySnapshot = await getDocs(collection(db, "todos"));
+  querySnapshot.forEach((doc) => {
+    console.log(doc.data());
+    arr.push(doc.data());
+  });
+  console.log(arr);
+  renderTodo();
+}
+if(todo.value !== null){
+  
+  getData();
+  
 }
 
-
-
-form.addEventListener('submit', async (event) => {
+  
+  form.addEventListener('submit', async (event) => {
 
   event.preventDefault();
   console.log(todo.value);
   renderTodo();
-
+  
   try {
     if (todo.value !== '' && todo.value !== null) {
       let todoSplit = todo.value.split('');

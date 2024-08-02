@@ -6,7 +6,6 @@
 
 .todo-head {
   text-align: center;
-  font-family: cursive;
   margin-top: 100px;
 }
 
@@ -60,7 +59,6 @@ form:hover {
   border: none;
   background: #0bff02;
   padding: 5px;
-  font-family: cursive;
 }
 
 #add-to-list-button:hover {
@@ -75,7 +73,6 @@ form:hover {
 }
 
 .todo-li {
-  font-family: cursive;
   font-size: 19px;
   padding: 5px;
   list-style: none;
@@ -89,8 +86,7 @@ form:hover {
 }
 
 .todo-li:hover {
-  background: whitesmoke;
-  transition: 0.1s ease;
+  background: gainsboro;
 }
 
 .li-buttons {
@@ -101,7 +97,6 @@ form:hover {
 }
 
 .editli-button {
-  font-family: cursive;
   background: #00ff55;
   border: none;
   padding: 5px;
@@ -120,7 +115,6 @@ form:hover {
 }
 
 .deleteli-button {
-  font-family: cursive;
   background: #fd0000;
   border: none;
   color: white;
@@ -186,13 +180,11 @@ form:hover {
 
   .todo-head {
     text-align: center;
-    font-family: cursive;
     font-weight: lighter;
     margin-top: 50px;
   }
 
   .editli-button {
-    font-family: cursive;
     background: #00ff55;
     border: none;
     padding: 7px;
@@ -202,7 +194,6 @@ form:hover {
     transition: 0.3s ease;
   }
   .deleteli-button {
-    font-family: cursive;
     background: #fd0000;
     border: none;
     color: white;
@@ -268,7 +259,6 @@ navbar {
   box-shadow: 0px 0px 3px gray;
   padding: 4px;
   padding-top: 10px;
-  font-family: cursive;
   border-radius: 20px;
   word-wrap: break-word; 
   word-break: break-all; 

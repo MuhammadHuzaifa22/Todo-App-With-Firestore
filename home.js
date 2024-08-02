@@ -1,6 +1,6 @@
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js";
 import { auth, db } from "./config.js";
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+import { collection, addDoc, getDocs, doc, deleteDoc, updateDoc, Timestamp, } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
 
 
 const form = document.getElementById('todo-form');
@@ -39,41 +39,48 @@ onAuthStateChanged(auth, (user) => {
 
 
 function renderTodo() {
-  if (todo.value !== null && todo.value !== '') {
-    let todoSplit = todo.value.split('');
-    console.log("🚀 ~ todoSplit:", todoSplit)
-    if(todoSplit.includes('<')  || todoSplit.includes('>') || todoSplit.includes('@') || todoSplit.includes('!') || todoSplit.includes('#') || todoSplit.includes('$') || todoSplit.includes('%') || todoSplit.includes('^') || todoSplit.includes('&') || todoSplit.includes('*') || todoSplit.includes('(') || todoSplit.includes(')') || todoSplit.includes('.') || todoSplit.includes('/') || todoSplit.includes('?') || todoSplit.includes('"') || todoSplit.includes(';') || todoSplit.includes(':') || todoSplit.includes('{') || todoSplit.includes('}') || todoSplit.includes('|')|| todoSplit.includes('=') || todoSplit.includes('`')){
-      alert('Input field should not contain *symbols* \n  Like < >  @ ! # $ % ^ & * ( ) - + . ` ?  / = " : ; { }');
-    }else{
-
-      if (todoSplit[0] === todoSplit[0].toUpperCase() ) {
-        
-      let todoObj = {
-        todo: `${todo.value}`
-      }
-      arr.push(todoObj);
-      ul.innerHTML = '';
-      arr.slice().reverse().map((item, index) => {
-        ul.innerHTML += `<li class="todo-li">${item.todo}<div class="li-buttons"><button class="editli-button">Edit <i class="fa-solid fa-pen"></i></button><button class="deleteli-button">Delete <i class="fa-solid fa-trash"></i></button></div></li>`
-        const editLiBtn = document.querySelector('.editli-button');
-        editLiBtn.addEventListener('click', () => {
-          alert(`This function is coming soon`);
-        })
-        
-        const deleteLiBtn = document.querySelector('.deleteli-button');
-        deleteLiBtn.addEventListener('click', () => {
-          alert(`This function is coming soon`);
-        })
-      })
-      
-    } else {
-      alert(`First letter should be capital form`);
-    }
-  }
+  ul.innerHTML = '';
+  let todoSplit = todo.value.split('');
+  console.log("🚀 ~ todoSplit:", todoSplit)
+  if (todoSplit.includes('<') || todoSplit.includes('>') || todoSplit.includes('@') || todoSplit.includes('!') || todoSplit.includes('#') || todoSplit.includes('$') || todoSplit.includes('%') || todoSplit.includes('^') || todoSplit.includes('&') || todoSplit.includes('*') || todoSplit.includes('(') || todoSplit.includes(')') || todoSplit.includes('.') || todoSplit.includes('/') || todoSplit.includes('?') || todoSplit.includes('"') || todoSplit.includes(';') || todoSplit.includes(':') || todoSplit.includes('{') || todoSplit.includes('}') || todoSplit.includes('|') || todoSplit.includes('=') || todoSplit.includes('`')) {
+    alert('Input field should not contain *symbols* \n  Like < >  @ ! # $ % ^ & * ( ) - + . ` ?  / = " : ; { }');
   } else {
-    alert(`Please enter todo`);
+     
+    arr.map((item) => {
+      ul.innerHTML += `
+      <li class="todo-li">${item.todo}<div class="li-buttons"><button class="editli-button">Edit <i class="fa-solid fa-pen"></i></button><button class="deleteli-button">Delete <i class="fa-solid fa-trash"></i></button></div></li>
+          `;
+    });
+
+    // ., Edit Button Function
+    const editLiBtn = document.querySelectorAll('.editli-button');
+    editLiBtn.forEach((item,index)=>{
+      item.addEventListener('click', async ()=>{
+        const newEditValue = prompt(`Enter new todo`);
+        const todoUpdate = doc(db, "todos", arr[index].id);
+        await updateDoc(todoUpdate, {
+          todo: newEditValue,
+        });
+        arr[index].todo = newEditValue;
+        renderTodo();
+      })
+    })
+    
+    // ., Delete Button Function
+    const deleteLiBtn = document.querySelectorAll('.deleteli-button');
+    deleteLiBtn.forEach((item,index)=>{
+     item.addEventListener('click',async ()=>{
+      console.log(arr[index]);
+      await deleteDoc(doc(db, "todos", arr[index].id));
+      arr.splice(index,1);
+      renderTodo();
+     })
+    })
   }
 }
+
+
+
 
 
 
@@ -81,22 +88,20 @@ form.addEventListener('submit', async (event) => {
 
   event.preventDefault();
   console.log(todo.value);
-  renderTodo();
 
   try {
-    if (todo.value !== '' && todo.value !== null) {
-      let todoSplit = todo.value.split('');
-      if (todoSplit[0] !== todoSplit[0].toLowerCase()) {
-        const docRef = await addDoc(collection(db, "todos"), {
-          todo: `${todo.value}`
-        });
-        todo.value = '';
-        console.log("Document written with ID: ", docRef.id);
-      }
-    }
-
-  }
-  catch (e) {
+    const docRef = await addDoc(collection(db, "todos"), {
+      todo: todo.value,
+      time: Timestamp.fromDate(new Date()),
+    });
+    console.log("Document written with ID: ", docRef.id);
+    arr.push({
+      todo: todo.value,
+      id: docRef.id,
+    });
+    renderTodo();
+    todo.value = "";
+  } catch (e) {
     console.error("Error adding document: ", e);
   }
 })
@@ -107,6 +112,7 @@ if (registeredWithEmailUserName) {
   signOutDetailAndbButton.innerHTML = `<p class="sign-out-details-section-text"><i class="fa-solid fa-signature"></i> ${registeredWithEmailUserName}</p>
   <p class="sign-out-details-section-text"><i class="fa-regular fa-envelope"></i> ${registeredWithEmailUserEmail}</p>
  <button id="sign-out-button-details-section">Sign Out <i class="fa-solid fa-arrow-right-from-bracket"></i></button>`
+
   const signOutDetailsButton = document.getElementById('sign-out-button-details-section');
   signOutDetailsButton.addEventListener('click', () => {
     signOut(auth).then(() => {
@@ -142,3 +148,14 @@ if (userWithGoogle) {
 }
 
 
+// .,Get Data
+async function getData() {
+  const querySnapshot = await getDocs(collection(db, "todos"));
+  querySnapshot.forEach((doc) => {
+    arr.push({ ...doc.data(), id: doc.id });
+  });
+  console.log(arr);
+  renderTodo();
+}
+
+getData();
