@@ -9,6 +9,14 @@
   margin-top: 10px;
 }
 
+body{
+  background-image:url('./Images/6be112ace6b0122bed7b5053b40905f5.jpg');
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position:center;
+  min-height: 100vh;
+}
+
 form {
   width: 500px;
   margin: auto;
@@ -21,6 +29,7 @@ form {
   border-radius: 20px;
   border: none;
   margin-bottom: 70px;
+  background: rgb(216, 210, 210);
 }
 
 .todo-input {
@@ -69,11 +78,12 @@ form:hover {
 
 #todo-ul {
   margin-left: 20px;
-  width: 30vw;
+  width: 500px;
   margin: 70px auto;
 }
 
 .todo-li {
+  background: gainsboro;
   font-size: 23px;
   padding: 7px;
   list-style: none;
@@ -99,7 +109,7 @@ form:hover {
 }
 
 .todo-li:hover {
-  background: rgba(220, 220, 220, 0.295);
+  background: rgba(247, 252, 218, 0.466);
 }
 
 .buttons-section-ul {
@@ -328,7 +338,7 @@ navbar {
 
 .filter-button-div {
   display: flex;
-  width: 81%;
+  width: 85vw;
   position: fixed;
   justify-content: end;
   margin: auto;
