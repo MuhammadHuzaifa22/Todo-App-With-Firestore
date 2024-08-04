@@ -15,12 +15,11 @@
     ></script>
   </head>
   <body>
-
     <navbar>
       <img
-      src="./Assets/Images/sign-out.png"
-      alt="sign-out-image"
-      id="sign-out-button"
+        src="./Assets/Images/sign-out.png"
+        alt="sign-out-image"
+        id="sign-out-button"
       />
       <div class="idv">
         <div class="sign-out-detail-and-button"></div>
@@ -32,11 +31,35 @@
     <form id="todo-form">
       <div class="todo-input">
         <input type="text" placeholder="Enter task to add" id="todo" />
+        <select id="select">
+          <option value="karachi">karachi</option>
+          <option value="lahore">lahore</option>
+          <option value="hyderabad">hyderabad</option>
+        </select>
         <button type="submit" id="add-to-list-button">
           Add To List <i class="fa-solid fa-table-list"></i>
         </button>
       </div>
     </form>
+    <div class="filter-button-div">
+      <button id="filter-button"><i class="fa-solid fa-filter"></i></button>
+      <div class="filter-div">
+        <h3 id="filter-div-h3"><i class="fa-regular fa-clock"></i>Sort by time <i class="fa-solid fa-angle-right"></i></h3>
+        <div class="filter-mouseover-div-1">
+          <p class="filter-mouseover-div-1-text selection1">Ascending Order <i class="fa-solid fa-arrow-up"></i></p>
+          <p class="filter-mouseover-div-1-text selection2">Descending Order <i class="fa-solid fa-arrow-down"></i></p>
+        </div>
+        <h3 id="filter-div-h3-1"><i class="fa-solid fa-city"></i>Sort by city <i class="fa-solid fa-angle-right"></i></h3>
+        <div class="filter-mouseover-div-2">
+          <p class="filter-mouseover-div-2-text selection3">Not Available</p>
+          <p class="filter-mouseover-div-2-text selection4">Not Available</p>
+          <p class="filter-mouseover-div-2-text selection5">Not Available</p>
+        </div>
+      </div>
+    </div>
+    <div class="selection-div">
+      <h1 id="selection-div-h1">(default)No filter selected</h1>
+    </div>
     <ul id="todo-ul"></ul>
 
     <!-- .,JavaScript Link  -->

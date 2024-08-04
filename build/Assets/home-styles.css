@@ -6,8 +6,7 @@
 
 .todo-head {
   text-align: center;
-  font-family: cursive;
-  margin-top: 100px;
+  margin-top: 10px;
 }
 
 form {
@@ -16,11 +15,12 @@ form {
   display: flex;
   flex-direction: column;
   gap: 60px;
-  margin-top: 30px;
+  margin-top: 20px;
   padding: 10px;
-  box-shadow: 0px 0px 3px gray;
+  box-shadow: 0px 0px 2px gray;
   border-radius: 20px;
   border: none;
+  margin-bottom: 70px;
 }
 
 .todo-input {
@@ -56,11 +56,10 @@ form:hover {
 #add-to-list-button {
   font-size: 15px;
   border-radius: 20px;
-  box-shadow: 0px 0px 3px black;
+  box-shadow: 0px 0px 2px black;
   border: none;
   background: #0bff02;
   padding: 5px;
-  font-family: cursive;
 }
 
 #add-to-list-button:hover {
@@ -70,43 +69,58 @@ form:hover {
 
 #todo-ul {
   margin-left: 20px;
-  width: 500px;
-  margin: 50px auto;
+  width: 30vw;
+  margin: 70px auto;
 }
 
 .todo-li {
-  font-family: cursive;
-  font-size: 19px;
-  padding: 5px;
+  font-size: 23px;
+  padding: 7px;
   list-style: none;
   margin-top: 10px;
   margin-left: 10px;
-  box-shadow: 2px 2px 2px 2px gray;
+  box-shadow: 1px 1px 2px 2px gray;
   border-radius: 20px;
-  font-weight: lighter;
+  font-weight: bold;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
+  white-space: normal; /* Allows normal wrapping */
+  word-wrap: break-word; /* Breaks long words to fit */
+  overflow-wrap: break-word; /* Ensures words are broken to prevent overflow */
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.centent-div {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
 }
 
 .todo-li:hover {
-  background: whitesmoke;
-  transition: 0.1s ease;
+  background: rgba(220, 220, 220, 0.295);
+}
+
+.buttons-section-ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .li-buttons {
   display: flex;
-  justify-content: end;
-  margin-left: auto;
+  justify-content: center;
   gap: 10px;
 }
 
 .editli-button {
-  font-family: cursive;
-  background: #00ff55;
+  background: #0400ff;
   border: none;
   padding: 5px;
   border-radius: 20px;
-  box-shadow: 0px 0px 6px gray;
+  box-shadow: 0px 0px 2px gray;
+  color: white;
 }
 
 .editli-button:hover {
@@ -120,13 +134,12 @@ form:hover {
 }
 
 .deleteli-button {
-  font-family: cursive;
   background: #fd0000;
   border: none;
   color: white;
   padding: 7px;
   border-radius: 20px;
-  box-shadow: 0px 0px 6px gray;
+  box-shadow: 0px 0px 2px gray;
 }
 
 .deleteli-button:hover {
@@ -146,12 +159,13 @@ form:hover {
     display: flex;
     flex-direction: column;
     gap: 60px;
-    margin-top: 30px;
+    margin-top: 20px;
     padding: 10px;
     box-shadow: 0px 0px 3px gray;
     border-radius: 20px;
     border: none;
     transition: 0.3s ease;
+    margin-bottom: 70px;
   }
 
   #todo-ul {
@@ -169,12 +183,13 @@ form:hover {
     display: flex;
     flex-direction: column;
     gap: 60px;
-    margin-top: 30px;
+    margin-top: 20px;
     padding: 10px;
     box-shadow: 0px 0px 3px gray;
     border-radius: 20px;
     border: none;
     transition: 0.3s ease;
+    margin-bottom: 70px;
   }
 
   #todo-ul {
@@ -186,13 +201,11 @@ form:hover {
 
   .todo-head {
     text-align: center;
-    font-family: cursive;
     font-weight: lighter;
-    margin-top: 50px;
+    margin-top: 30px;
   }
 
   .editli-button {
-    font-family: cursive;
     background: #00ff55;
     border: none;
     padding: 7px;
@@ -202,7 +215,6 @@ form:hover {
     transition: 0.3s ease;
   }
   .deleteli-button {
-    font-family: cursive;
     background: #fd0000;
     border: none;
     color: white;
@@ -219,10 +231,7 @@ navbar {
   display: flex;
   padding: 2px 20px;
   align-items: center;
-  
 }
-
-
 
 #sign-out-button {
   display: flex;
@@ -264,19 +273,18 @@ navbar {
 .sign-out-detail-and-button {
   position: fixed;
   text-align: center;
-  width:180px;
+  width: 180px;
   box-shadow: 0px 0px 3px gray;
   padding: 4px;
   padding-top: 10px;
-  font-family: cursive;
   border-radius: 20px;
-  word-wrap: break-word; 
-  word-break: break-all; 
-  overflow: hidden; 
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden;
   margin-top: 30px;
 }
 
-#sign-out-button-details-section{
+#sign-out-button-details-section {
   background: red;
   color: white;
   border: none;
@@ -286,14 +294,183 @@ navbar {
   box-shadow: 1px 1px 3px rgb(161, 8, 8);
 }
 
-#sign-out-button-details-section:hover{
+#sign-out-button-details-section:hover {
   background: #b10f0f;
   box-shadow: 0px 0px 5px red;
   transition: 0.2s ease;
 }
 
-.sign-out-details-section-text:hover{
-background: gainsboro;
-cursor: pointer;
-transition: 0.1s ease;
+.sign-out-details-section-text:hover {
+  background: gainsboro;
+  cursor: pointer;
+  transition: 0.1s ease;
+}
+
+.time-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 3px black;
+  padding: 1px 4px;
+  font-weight: bold;
+}
+
+#select {
+  font-size: 19px;
+  padding: 4px 8px;
+  font-weight: lighter;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 1px 1px 1px black;
+}
+
+.filter-button-div {
+  display: flex;
+  width: 81%;
+  position: fixed;
+  justify-content: end;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.filter-button-div button {
+  font-size: 25px;
+  background: none;
+  border: none;
+  padding-right: 4px;
+  padding-left: 4px;
+  padding-top: 9px;
+  border-radius: 20px;
+}
+
+.filter-button-div button:hover {
+  background: rgba(220, 220, 220, 0.658);
+  cursor: pointer;
+}
+
+.filter-div {
+  padding-left: 6px;
+  width: 200px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px 2px gainsboro;
+  border: none;
+  position: fixed;
+  padding-top: 30px;
+  margin-right: 30px;
+  padding-bottom: 10px;
+  transition: 0.2s ease;
+  margin-top: 10px;
+  border: 1px solid black;
+  margin-left: 200px;
+}
+
+.filter-div:hover {
+  box-shadow: 1px 1px 1px 1px black;
+}
+
+.filter-div h3 {
+  font-weight: lighter;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 5px;
+  border-radius: 20px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-size: 23px;
+}
+
+.filter-div h3:hover {
+  background: gainsboro;
+}
+
+.filter-mouseover-div-1 {
+  margin-left: 180px;
+  margin-top: -25px;
+  padding: 5px;
+  box-shadow: 1px 1px 1px 1px gray;
+  border-radius: 20px;
+  padding-left: 20px;
+  transition: 0.1s ease-in;
+  width: 190px;
+  margin-bottom: 10px;
+  border: 1px solid black;
+}
+
+.filter-mouseover-div-1:hover {
+  box-shadow: 1px 1px 3px black;
+}
+
+.filter-mouseover-div-1 p {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: bolder;
+}
+
+.filter-mouseover-div-1-text {
+  border-radius: 20px;
+  margin-top: 5px;
+  padding: 2px;
+}
+
+.filter-mouseover-div-1-text:hover {
+  background: rgba(128, 128, 128, 0.562);
+}
+
+.filter-mouseover-div-2 {
+  margin-left: 180px;
+  margin-top: -28px;
+  padding: 5px;
+  box-shadow: 1px 1px 1px 1px gray;
+  border-radius: 20px;
+  transition: 0.1s ease-in;
+  padding-left: 20px;
+  font-weight: bold;
+  width: 180px;
+  border: 1px solid black;
+}
+
+.filter-mouseover-div-2:hover {
+  box-shadow: 1px 1px 3px black;
+}
+
+.filter-mouseover-div-2 p {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: bold;
+}
+
+.filter-mouseover-div-2-text {
+  border-radius: 20px;
+  margin-top: 5px;
+  padding: 2px;
+}
+
+.filter-mouseover-div-2-text:hover {
+  background: rgba(128, 128, 128, 0.562);
+}
+
+.selection-div {
+  margin-left: auto;
+  display: flex;
+  width: 150px;
+  text-align: center;
+  padding: 5px;
+  font-size: 10px;
+  word-wrap: break-word;
+  margin-right: 140px;
+  border-radius: 20px;
+  margin-top: -20px;
+}
+
+.select-value-div-text{
+  padding: 5px;
+  box-shadow: 1px 1px 1px 1px gray;
+  border-radius: 20px;
+  font-size: 17px;
 }
