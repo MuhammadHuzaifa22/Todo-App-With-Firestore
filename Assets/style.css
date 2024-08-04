@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
+body{
+  background-image: url('./Images/pexels-karolina-grabowska-4041384.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
 #form {
   display: flex;
   flex-direction: column;
@@ -16,6 +24,7 @@
   box-shadow: 0px 0px 5px gray;
   padding: 10px;
   margin-top: 100px;
+  background: rgb(226, 226, 226);
 }
 
 #form h1 {

@@ -351,11 +351,12 @@ navbar {
 }
 
 .filter-div {
+  background: gainsboro;
   padding-left: 6px;
   width: 200px;
   border-radius: 20px;
   cursor: pointer;
-  box-shadow: 2px 2px 2px 2px gainsboro;
+  box-shadow: 2px 2px 3px black;
   border: none;
   position: fixed;
   padding-top: 30px;
@@ -384,11 +385,11 @@ navbar {
 }
 
 .filter-div h3:hover {
-  background: gainsboro;
+  background: rgb(148, 138, 138);
 }
 
 .filter-mouseover-div-1 {
-  margin-left: 180px;
+  margin-left: 190px;
   margin-top: -25px;
   padding: 5px;
   box-shadow: 1px 1px 1px 1px gray;
@@ -398,6 +399,7 @@ navbar {
   width: 190px;
   margin-bottom: 10px;
   border: 1px solid black;
+  background: gainsboro;
 }
 
 .filter-mouseover-div-1:hover {
@@ -422,7 +424,8 @@ navbar {
 }
 
 .filter-mouseover-div-2 {
-  margin-left: 180px;
+  background: gainsboro;
+  margin-left: 190px;
   margin-top: -28px;
   padding: 5px;
   box-shadow: 1px 1px 1px 1px gray;
