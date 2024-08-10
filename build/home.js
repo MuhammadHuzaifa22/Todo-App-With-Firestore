@@ -7,14 +7,11 @@ import { collection, addDoc, getDocs, doc, deleteDoc, updateDoc, Timestamp, quer
 const form = document.getElementById('todo-form');
 const todo = document.getElementById('todo');
 const ul = document.querySelector('ul');
-let arr = [];
 let registeredWithEmailUserName = JSON.parse(localStorage.getItem('user-registered-name'));
 let registeredWithEmailUserEmail = JSON.parse(localStorage.getItem('user-registered-email'));
-console.log("🚀 ~ registeredWithEmail:", registeredWithEmailUserName)
 const userWithGoogle = JSON.parse(localStorage.getItem('user-with-google'));
 const signOutDetailAndbButton = document.querySelector('.sign-out-detail-and-button');
 const signOutButton = document.getElementById('sign-out-button');
-const filterButtonDiv = document.querySelector('.filter-button-div');
 const filterButton = document.getElementById('filter-button');
 const filterDiv = document.querySelector('.filter-div');
 const filterdivH3 = document.getElementById('filter-div-h3');
@@ -29,8 +26,15 @@ const selection5 = document.querySelector('.selection5');
 const selectionDiv = document.querySelector('.selection-div');
 const selectionDivH1 = document.getElementById('selection-div-h1');
 const selectCity = document.querySelector('#select');
+const city1 = document.getElementById('cty1');
+const city2 = document.getElementById('cty2');
+const city3 = document.getElementById('cty3');
+const resetButton = document.getElementById('reset-button');
 
-// ., Sing Out Display
+// ., Make empty array for render data
+let arr = [];
+
+// ., Sing Out Button Display
 signOutDetailAndbButton.style.display = 'none';
 signOutButton.addEventListener('click', () => {
   if (signOutDetailAndbButton.style.display === 'none') {
@@ -60,7 +64,7 @@ function renderTodo() {
   if (todoSplit.includes('<') || todoSplit.includes('>') || todoSplit.includes('@') || todoSplit.includes('!') || todoSplit.includes('#') || todoSplit.includes('$') || todoSplit.includes('%') || todoSplit.includes('^') || todoSplit.includes('&') || todoSplit.includes('*') || todoSplit.includes('(') || todoSplit.includes(')') || todoSplit.includes('.') || todoSplit.includes('/') || todoSplit.includes('?') || todoSplit.includes('"') || todoSplit.includes(';') || todoSplit.includes(':') || todoSplit.includes('{') || todoSplit.includes('}') || todoSplit.includes('|') || todoSplit.includes('=') || todoSplit.includes('`')) {
     alert('Input field should not contain *symbols* \n  Like < >  @ ! # $ % ^ & * ( ) - + . ` ?  / = " : ; { }');
   } else {
-    arr.reverse().map(item => {
+    arr.forEach(item => {
       if (item.time) {
         console.log(item.time.toDate())
         let newTime = item.time.toDate().toString();
@@ -68,13 +72,41 @@ function renderTodo() {
         console.log(newTime.length);
         if (newTime.length > 57 && newTime.length < 59) {
           newTime = newTime.slice(0, 24).join('');
+          let newTimeSplit = newTime.split('').join('')
+          let newTimeSplitSlice = newTimeSplit.slice(16,24);
+          let newTimeSplitSileSplit = newTimeSplitSlice.split('');
+          let newTimeSplitSileSplitSlice = newTimeSplitSileSplit.slice(0,2);
+          console.log("🚀 ~ newTimeSplitSileSplitSlice:", newTimeSplitSileSplitSlice);
+          if(newTimeSplitSileSplitSlice.join('') > 12){
+            console.log("🚀 ~ newTimeSplitSileSplitSlice:", newTimeSplitSileSplitSlice.join(''))
+            console.log(newTime);
+            console.log('up to 12');
+            newTimeSplitSileSplitSlice = newTimeSplitSileSplitSlice.join('') - 12;
+            console.log("🚀 ~ newTimeSplitSileSplitSlice:", newTimeSplitSileSplitSlice);
+            newTimeSplitSlice = newTimeSplitSlice.slice(2,8);
+            console.log("🚀 ~ newTimeSplitSlice:",  newTimeSplitSileSplitSlice +  newTimeSplitSlice);
+            let again = newTimeSplitSileSplitSlice + newTimeSplitSlice
+            console.log("🚀 ~ again:", again)
+            newTime = newTime.slice(0, 16) + again
+      console.log(newTime) 
+
+            console.log("🚀 ~ newTime:", newTime)
+          }else{
+            console.log(newTime);
+            console.log('under 12')
+          }
+          
+          
         }
+
         ul.innerHTML += `
-        <li class="todo-li"><div class="centent-div"><div>${item.todo}</div> <div><p class="select-value-div-text"><i class="fa-solid fa-city"></i> ${select.value}</p></div></div><div class="buttons-section-ul"><div class="li-buttons"><button class="editli-button">Edit <i class="fa-solid fa-pen"></i></button><button class="deleteli-button">Delete <i class="fa-solid fa-trash"></i></button></div> <p class="time-section"><img src="./Assets/Images/sending-time-icon.png" alt="sending-time-icon" style="width: 30px;">${newTime}</p></div></li>
+        <li class="todo-li"><div class="centent-div"><div>${item.todo}</div> <div><p class="select-value-div-text"><i class="fa-solid fa-city"></i> ${item.city}</p></div></div><div class="buttons-section-ul"><div class="li-buttons"><button class="editli-button">Edit <i class="fa-solid fa-pen"></i></button><button class="deleteli-button">Delete <i class="fa-solid fa-trash"></i></button></div> <p class="time-section"><img src="./Assets/Images/sending-time-icon.png" alt="sending-time-icon" style="width: 30px;">${newTime}</p></div></li>
         `;
-      } else {
+      }
+      else {
+        console.log(arr);
         ul.innerHTML += `
-        <li class="todo-li"><div class="centent-div"><div>${item.todo}</div> <div><p class="select-value-div-text"><i class="fa-solid fa-city"></i> ${select.value}</p></div></div><div class="buttons-section-ul"><div class="li-buttons"><button class="editli-button">Edit <i class="fa-solid fa-pen"></i></button><button class="deleteli-button">Delete <i class="fa-solid fa-trash"></i></button></div> <p class="time-section"><img src="./Assets/Images/sending-time-icon.png" alt="sending-time-icon" style="width: 30px;">No Time</p></div></li>
+        <li class="todo-li"><div class="centent-div"><div>${item.todo}</div> <div><p class="select-value-div-text"><i class="fa-solid fa-city"></i> ${item.city}</p></div></div><div class="buttons-section-ul"><div class="li-buttons"><button class="editli-button">Edit <i class="fa-solid fa-pen"></i></button><button class="deleteli-button">Delete <i class="fa-solid fa-trash"></i></button></div> <p class="time-section"><img src="./Assets/Images/sending-time-icon.png" alt="sending-time-icon" style="width: 30px;">No Time</p></div></li>
         `;
       }
     });
@@ -87,7 +119,7 @@ function renderTodo() {
     editLiBtn.forEach((item, index) => {
       item.addEventListener('click', async () => {
         const newEditValue = prompt(`Enter new todo`);
-        if(newEditValue !== '' && newEditValue !== null){
+        if (newEditValue !== '' && newEditValue !== null) {
 
           const todoUpdate = doc(db, "todos", arr[index].id);
           await updateDoc(todoUpdate, {
@@ -95,7 +127,7 @@ function renderTodo() {
           });
           arr[index].todo = newEditValue;
           renderTodo();
-        }else{
+        } else {
           alert(`Please re enter new value`)
         }
       })
@@ -117,8 +149,9 @@ function renderTodo() {
   filteredButton(arr);
 }
 
+
 // ., Filter Button Dislay && Filter Status Div Display
-selectionDivH1.innerHTML = 'j';
+selectionDivH1.innerHTML = 'Newest';
 filterButton.style.display = 'none';
 function filteredButton(arr) {
   if (arr.length > 0) {
@@ -208,7 +241,9 @@ filterdivH31.addEventListener('mouseout', () => {
 
 
 // ., Filter Selection
+resetButton.style.display = 'none';
 selection1.addEventListener('click', async (event) => {
+  resetButton.style.display = 'block';
   arr = [];
   console.log(event.target.textContent);
   const todosRef = collection(db, "todos");
@@ -231,10 +266,12 @@ selection1.addEventListener('click', async (event) => {
   selectionDivH1.style.borderRadius = '20px';
   selectionDivH1.style.padding = '5px';
   selectionDivH1.style.marginTop = '-30px';
+  selectionDivH1.style.background = 'gainsboro'
 })
 
 
 selection2.addEventListener('click', async (event) => {
+  resetButton.style.display = 'block';
   arr = [];
   console.log(event.target.textContent);
   const todosRef = collection(db, "todos");
@@ -260,50 +297,177 @@ selection2.addEventListener('click', async (event) => {
 
 
 selection3.addEventListener('click', async (event) => {
+  resetButton.style.display = 'block';
   filterDiv.style.display = 'none';
-  console.log(selection3.textContent);
+  console.log("Selected City:", selection3.textContent);
+
+
   arr = [];
-  console.log(event.target.innerHTML);
-  const todosRef = collection(db, "todos");
+
+  var todosRef = collection(db, "todos");
+
+
   const q = query(
     todosRef,
     where("city", "==", event.target.innerHTML),
-    orderBy("city", "city")
+    orderBy("time", "desc")
   );
+
   const querySnapshot = await getDocs(q);
-  querySnapshot.forEach((doc) => {
-    arr.push({ ...doc.data(), id: doc.id });
-  });
+  if (querySnapshot === '' || querySnapshot === null) {
+    console.log("No matching documents found for city:", event.target.innerHTML);
+
+  } else {
+
+    querySnapshot.forEach((doc) => {
+      console.log("Document Data:", doc.data());
+      arr.push({ ...doc.data(), id: doc.id, city: event.target.innerHTML });
+    });
+    console.log("Filtered Todos Array:", arr);
+  }
+
+  renderTodo();
+
+
+  if (!renderTodo()) {
+    filterButton.style.display = 'block';
+
+  };
+
   selectionDivH1.style.display = 'block';
-  filterButton.innerHTML = '<i class="fa-solid fa-filter"></i>'
-  selectionDivH1.innerHTML = selection3.innerHTML
+  filterButton.innerHTML = '<i class="fa-solid fa-filter"></i>';
+  selectionDivH1.innerHTML = event.target.innerHTML;
   selectionDivH1.style.boxShadow = '1px 1px 3px gray';
   selectionDivH1.style.borderRadius = '20px';
   selectionDivH1.style.padding = '5px';
-})
 
-selection4.addEventListener('click', () => {
+  selectionDivH1.style.display = 'block';
+  filterButton.innerHTML = '<i class="fa-solid fa-filter"></i>';
+  selectionDivH1.innerHTML = event.target.innerHTML;
+  selectionDivH1.style.boxShadow = '1px 1px 3px gray';
+  selectionDivH1.style.borderRadius = '20px';
+  selectionDivH1.style.padding = '5px';
+});
+
+
+
+selection4.addEventListener('click', async (event) => {
+  resetButton.style.display = 'block';
   filterDiv.style.display = 'none';
   console.log(selection4.textContent);
+  arr = [];
+
+  var todosRef = collection(db, "todos");
+
+
+  const q = query(
+    todosRef,
+    where("city", "==", event.target.innerHTML),
+    orderBy("time", "desc")
+  );
+
+  const querySnapshot = await getDocs(q);
+  if (querySnapshot === '' || querySnapshot === null) {
+    console.log("No matching documents found for city:", event.target.innerHTML);
+
+  } else {
+
+    querySnapshot.forEach((doc) => {
+      console.log("Document Data:", doc.data());
+      arr.push({ ...doc.data(), id: doc.id, city: event.target.innerHTML });
+    });
+    console.log("Filtered Todos Array:", arr);
+  }
+
+
+  renderTodo();
+
+
+  if (!renderTodo()) {
+
+    filterButton.style.display = 'block';
+
+  };
+
   selectionDivH1.style.display = 'block';
-  filterButton.innerHTML = '<i class="fa-solid fa-filter"></i>'
-  selectionDivH1.innerHTML = selection4.innerHTML
+  filterButton.innerHTML = '<i class="fa-solid fa-filter"></i>';
+  selectionDivH1.innerHTML = event.target.innerHTML;
+  selectionDivH1.style.boxShadow = '1px 1px 3px gray';
+  selectionDivH1.style.borderRadius = '20px';
+  selectionDivH1.style.padding = '5px';
+
+  selectionDivH1.style.display = 'block';
+  filterButton.innerHTML = '<i class="fa-solid fa-filter"></i>';
+  selectionDivH1.innerHTML = event.target.innerHTML;
   selectionDivH1.style.boxShadow = '1px 1px 3px gray';
   selectionDivH1.style.borderRadius = '20px';
   selectionDivH1.style.padding = '5px';
 })
 
-selection5.addEventListener('click', () => {
+selection5.addEventListener('click', async (event) => {
+  resetButton.style.display = 'block';
   filterDiv.style.display = 'none';
   console.log(selection5.textContent);
   selectionDivH1.style.display = 'block';
   filterButton.innerHTML = '<i class="fa-solid fa-filter"></i>'
-  selectionDivH1.innerHTML = selection5.innerHTML
+  arr = [];
+
+  var todosRef = collection(db, "todos");
+
+
+  const q = query(
+    todosRef,
+    where("city", "==", event.target.innerHTML),
+    orderBy("time", "desc")
+  );
+
+  const querySnapshot = await getDocs(q);
+  if (querySnapshot === '' || querySnapshot === null) {
+    console.log("No matching documents found for city:", event.target.innerHTML);
+
+  } else {
+
+    querySnapshot.forEach((doc) => {
+      console.log("Document Data:", doc.data());
+      arr.push({ ...doc.data(), id: doc.id, city: event.target.innerHTML });
+    });
+    console.log("Filtered Todos Array:", arr);
+  }
+
+
+  renderTodo();
+
+
+  if (!renderTodo()) {
+
+    filterButton.style.display = 'block';
+
+  };
+
+  selectionDivH1.style.display = 'block';
+  filterButton.innerHTML = '<i class="fa-solid fa-filter"></i>';
+  selectionDivH1.innerHTML = event.target.innerHTML;
+  selectionDivH1.style.boxShadow = '1px 1px 3px gray';
+  selectionDivH1.style.borderRadius = '20px';
+  selectionDivH1.style.padding = '5px';
+
+  selectionDivH1.style.display = 'block';
+  filterButton.innerHTML = '<i class="fa-solid fa-filter"></i>';
+  selectionDivH1.innerHTML = event.target.innerHTML;
   selectionDivH1.style.boxShadow = '1px 1px 3px gray';
   selectionDivH1.style.borderRadius = '20px';
   selectionDivH1.style.padding = '5px';
 })
 
+
+
+// ., Reset Button Function
+resetButton.addEventListener('click', () => {
+  getData();
+  renderTodo();
+  selectionDivH1.innerHTML = 'Default'
+  resetButton.style.display = 'none'
+})
 
 
 
@@ -326,6 +490,7 @@ form.addEventListener('submit', async (event) => {
       const docRef = await addDoc(collection(db, "todos"), {
         todo: todo.value,
         time: Timestamp.fromDate(new Date()),
+        city: selectCity.value
       });
       console.log("Document written with ID: ", docRef.id);
       arr.push({
@@ -365,8 +530,6 @@ if (registeredWithEmailUserName) {
 }
 
 
-
-
 // ., Sign Out With Google
 if (userWithGoogle) {
   signOutButton.src = `${userWithGoogle.photoURL}`;
@@ -384,7 +547,6 @@ if (userWithGoogle) {
 
   });
 }
-
 
 // .,Get data form Firestore
 selectionDivH1.innerHTML = ''

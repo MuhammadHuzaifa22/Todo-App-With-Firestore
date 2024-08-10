@@ -1,13 +1,10 @@
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js"
-
-import { auth , app } from "./config.js";
+import { auth } from "./config.js";
 const googleButton = document.querySelector('.googleButton');
 const provider = new GoogleAuthProvider();
 const form = document.getElementById('form');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
-const github = document.querySelector('#github');
-// var authProvider = app.GithubAuthProvider();
 
 
 form.addEventListener('submit', function (event) {
@@ -46,7 +43,3 @@ googleButton.addEventListener('click', () => {
 })
 
 
-// // ., Github Login
-// github.addEventListener('click',()=>{
-//     console.log('Btn')
-// })

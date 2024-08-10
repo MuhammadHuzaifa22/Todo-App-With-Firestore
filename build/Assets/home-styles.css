@@ -7,6 +7,11 @@
 .todo-head {
   text-align: center;
   margin-top: 10px;
+  color: rgb(199, 199, 199);
+  text-shadow: 1px 1px 2px black;
+  font-weight: bolder;
+  font-family: monospace;
+  font-size: 55px;
 }
 
 body{
@@ -338,7 +343,7 @@ navbar {
 
 .filter-button-div {
   display: flex;
-  width: 85vw;
+  width: 83vw;
   position: fixed;
   justify-content: end;
   margin: auto;
@@ -389,13 +394,41 @@ navbar {
   justify-content: space-between;
   padding-right: 5px;
   border-radius: 20px;
+  padding: 5px;
   padding-top: 2px;
   padding-bottom: 2px;
   font-size: 23px;
 }
 
+
+
+.reset-button {
+  display: flex;
+  position: fixed;
+  right: 0; 
+  top: 0;
+  margin-top: 150px;
+  padding: 15px;
+  font-weight: lighter;
+  align-items: center; /* Centers content vertically if needed */
+}
+
+
+.reset-button button{
+  font-size: 20px;
+  padding:5px;
+  border-radius: 20px;
+  background: gainsboro;
+  border: none;
+  box-shadow: 0px 0px 2px black;
+}
+
+.reset-button button:hover{
+  box-shadow: 1px 1px 2px gray;
+}
+
 .filter-div h3:hover {
-  background: rgb(148, 138, 138);
+  background: rgb(255, 255, 255);
 }
 
 .filter-mouseover-div-1 {
@@ -430,7 +463,7 @@ navbar {
 }
 
 .filter-mouseover-div-1-text:hover {
-  background: rgba(128, 128, 128, 0.562);
+  background: rgb(255, 255, 255);
 }
 
 .filter-mouseover-div-2 {
@@ -465,7 +498,14 @@ navbar {
 }
 
 .filter-mouseover-div-2-text:hover {
-  background: rgba(128, 128, 128, 0.562);
+  background: rgb(255, 255, 255);
+}
+
+.selection-div-container{
+  display: flex;
+  width: 95%;
+  margin: auto;
+  justify-content: end;
 }
 
 .selection-div {
@@ -479,6 +519,7 @@ navbar {
   margin-right: 140px;
   border-radius: 20px;
   margin-top: -20px;
+  position: fixed;
 }
 
 .select-value-div-text{
@@ -487,3 +528,4 @@ navbar {
   border-radius: 20px;
   font-size: 17px;
 }
+
