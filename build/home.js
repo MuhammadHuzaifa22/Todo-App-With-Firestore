@@ -26,9 +26,6 @@ const selection5 = document.querySelector('.selection5');
 const selectionDiv = document.querySelector('.selection-div');
 const selectionDivH1 = document.getElementById('selection-div-h1');
 const selectCity = document.querySelector('#select');
-const city1 = document.getElementById('cty1');
-const city2 = document.getElementById('cty2');
-const city3 = document.getElementById('cty3');
 const resetButton = document.getElementById('reset-button');
 
 // ., Make empty array for render data
@@ -303,9 +300,7 @@ selection3.addEventListener('click', async (event) => {
 
 
   arr = [];
-
   var todosRef = collection(db, "todos");
-
 
   const q = query(
     todosRef,
@@ -562,3 +557,5 @@ async function getData() {
 }
 
 getData();
+
+
